@@ -1,6 +1,5 @@
 package com.palbol.category.services;
 
-
 import com.palbol.category.domain.CategoryDomain;
 import com.palbol.category.dto.CategoryDTO;
 import com.palbol.category.repository.CategoryRepository;
@@ -16,7 +15,7 @@ import java.util.stream.Collectors;
 @Service
 @Slf4j
 public class CategoryServiceImpl implements CategoryService {
-    public CategoryRepository categoryRepository;
+    public final CategoryRepository categoryRepository;
 
     public CategoryServiceImpl(CategoryRepository categoryRepository) {
         this.categoryRepository = categoryRepository;
@@ -27,7 +26,7 @@ public class CategoryServiceImpl implements CategoryService {
     public Set<CategoryDTO> listAll(String search) {
         log.info("listAll");
 
-        Set<CategoryDTO> response = new HashSet<>();
+        var response = new HashSet<CategoryDTO>();
         try {
             List<CategoryDomain> listCategory = this.categoryRepository
                     .findAllCategoryStoredProcedure(search);
